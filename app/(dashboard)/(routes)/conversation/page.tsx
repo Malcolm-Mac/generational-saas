@@ -12,8 +12,8 @@ import Heading from "@/components/heading";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import Empty from "@/components/empty";
-import Loader from "@/components/loader";
+import { Empty } from "@/components/empty";
+import { Loader } from "@/components/loader";
 
 import { formSchema } from "./constants";
 import { cn } from "@/lib/utils";
