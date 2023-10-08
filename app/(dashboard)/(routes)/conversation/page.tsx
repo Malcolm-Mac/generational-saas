@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as z from "zod";
 import { MessageSquare } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -12,13 +12,14 @@ import Heading from "@/components/heading";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import Empty from "@/components/empty";
-import Loader from "@/components/loader";
+import { Empty } from "@/components/empty";
+import { Loader } from "@/components/loader";
 
 import { formSchema } from "./constants";
 import { cn } from "@/lib/utils";
 
 const ConversationPage = () => {
+  const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
   const [messages, setMessages] = useState<ChatCompletionMessageParam[]>([]);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -29,6 +30,14 @@ const ConversationPage = () => {
   });
 
   const isLoading = form.formState.isSubmitting;
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
