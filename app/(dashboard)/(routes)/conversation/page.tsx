@@ -62,7 +62,7 @@ const ConversationPage = () => {
   };
 
   return (
-    <div>
+    <>
       <Heading
         title="Conversation"
         description="Our most advanced conversation model."
@@ -133,7 +133,7 @@ const ConversationPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
